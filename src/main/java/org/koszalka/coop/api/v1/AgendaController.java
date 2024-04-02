@@ -7,10 +7,13 @@ import org.koszalka.coop.services.AgendaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/v1/agenda")
@@ -27,6 +30,11 @@ public class AgendaController {
     public ResponseEntity<AgendaEntity> createAgenda(@RequestBody AgendaDTO agendaDTO) {
         AgendaEntity agendaEntity = agendaService.createNewAgenda(agendaDTO);
         return new ResponseEntity<>(agendaEntity, HttpStatus.OK);
+    }
+
+    @GetMapping("/get-date")
+    public LocalDateTime getDate() {
+        return LocalDateTime.now();
     }
 
 }

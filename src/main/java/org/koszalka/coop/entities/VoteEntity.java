@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "votes", schema = "public")
+@Table(name = "vote", schema = "public")
 @Getter
 @Setter
 public class VoteEntity {
@@ -22,10 +22,10 @@ public class VoteEntity {
     @SequenceGenerator(name = "vote_sequence", sequenceName = "vote_sequence", allocationSize = 1, initialValue = 1, schema = "public")
     private Long id;
 
-    @Column(name = "cpf", nullable = false)
+    @Column(name = "cpf")
     private Long cpf;
 
-    @Column(name = "vote_status", nullable = false)
-    private boolean voteStatus;
+    @Column(name = "vote_status")
+    private String voteStatus;
 
 }

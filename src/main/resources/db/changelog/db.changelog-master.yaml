@@ -19,39 +19,20 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: expiration_date
-                  type: bigint
-                  defaultValue: "60"
+                  type: datetime
                   constraints:
                     nullable: false
         - createSequence:
             incrementBy: 1
             schemaName: public
-            sequenceName: short_sequence
+            sequenceName: agenda_sequence
             startValue: 1
-  - changeSet:
-      id: 1f615c48-d05f-43d9-aad1-fb60d57cd80f
-      author: raphael-koszalka
-      changes:
-        - dropNotNullConstraint:
-            columnDataType: Long
-            columnName: expiration_date
-            schemaName: public
-            tableName: agenda
-  - changeSet:
-      id: 26073fe7-b40f-4418-8794-c8182d1a4e11
-      author: raphael-koszalka
-      changes:
-        - addNotNullConstraint:
-            columnDataType: Long
-            columnName: expiration_date
-            schemaName: public
-            tableName: agenda
   - changeSet:
       id: 18fa817c-e13d-48ba-9f9b-1609e172f415
       author: raphael-koszalka
       changes:
         - createTable:
-            tableName: votes
+            tableName: vote
             columns:
               - column:
                   name: id
@@ -65,8 +46,8 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: voteStatus
-                  type: boolean
+                  name: vote_status
+                  type: char
                   constraints:
                     nullable: false
         - createSequence:
@@ -74,14 +55,3 @@ databaseChangeLog:
             schemaName: public
             sequenceName: vote_sequence
             startValue: 1
-  - changeSet:
-      id: 9efb3346-f175-4c68-9146-03dcca6662c1
-      author: raphael-koszalka
-      changes:
-        - addColumn:
-            tableName: agenda
-            columns:
-              - column:
-                  name: status
-                  type: int
-                  defaultValue: "0"
