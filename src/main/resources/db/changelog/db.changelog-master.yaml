@@ -46,3 +46,42 @@ databaseChangeLog:
             columnName: expiration_date
             schemaName: public
             tableName: agenda
+  - changeSet:
+      id: 18fa817c-e13d-48ba-9f9b-1609e172f415
+      author: raphael-koszalka
+      changes:
+        - createTable:
+            tableName: votes
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: cpf
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: voteStatus
+                  type: boolean
+                  constraints:
+                    nullable: false
+        - createSequence:
+            incrementBy: 1
+            schemaName: public
+            sequenceName: vote_sequence
+            startValue: 1
+  - changeSet:
+      id: 9efb3346-f175-4c68-9146-03dcca6662c1
+      author: raphael-koszalka
+      changes:
+        - addColumn:
+            tableName: agenda
+            columns:
+              - column:
+                  name: status
+                  type: int
+                  defaultValue: "0"

@@ -1,6 +1,6 @@
 package org.koszalka.coop.exceptions;
 
-public class NotCreatedException  extends RuntimeException {
+public class NotCreatedException extends RuntimeException {
 
     public NotCreatedException(String message) {
         super(message);
