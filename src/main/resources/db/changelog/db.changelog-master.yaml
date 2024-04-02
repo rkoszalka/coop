@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: 67e7cf97-ebdc-4439-9a65-c2853b435c98
+      author: raphael-koszalka
+      changes:
+        - createTable:
+            tableName: agenda
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: agenda_name
+                  type: varchar(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expiration_date
+                  type: bigint
+                  defaultValue: "60"
+                  constraints:
+                    nullable: false
+        - createSequence:
+            incrementBy: 1
+            schemaName: public
+            sequenceName: short_sequence
+            startValue: 1
+  - changeSet:
+      id: 1f615c48-d05f-43d9-aad1-fb60d57cd80f
+      author: raphael-koszalka
+      changes:
+        - dropNotNullConstraint:
+            columnDataType: Long
+            columnName: expiration_date
+            schemaName: public
+            tableName: agenda
+  - changeSet:
+      id: 26073fe7-b40f-4418-8794-c8182d1a4e11
+      author: raphael-koszalka
+      changes:
+        - addNotNullConstraint:
+            columnDataType: Long
+            columnName: expiration_date
+            schemaName: public
+            tableName: agenda
