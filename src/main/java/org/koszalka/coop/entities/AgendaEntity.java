@@ -28,4 +28,7 @@ public class AgendaEntity {
     @Column(name = "expiration_date", nullable = false)
     private Long expirationDate;
 
+    @Column(name = "status")
+    private Long status;
+
 }
