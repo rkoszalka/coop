@@ -11,6 +11,6 @@ public class VoteDTO {
 
     private final Long agendaID;
     private final Long cpf;
-    private final boolean yesOrNo;
+    private final String voteStatus;
 
 }

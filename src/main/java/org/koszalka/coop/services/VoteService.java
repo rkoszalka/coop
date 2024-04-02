@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -29,12 +30,14 @@ public class VoteService {
     }
 
     public VoteEntity saveNewVote(VoteDTO voteDTO) throws AgendaNotFoundException, AgendaIsClosedException {
+
         if(!checkIfAgendaExists(voteDTO.getAgendaID())) {
             throw new AgendaNotFoundException("Pauta não encontrada.");
         }
-        if (checkIfAgendaIsClosed(voteDTO.getAgendaID()) == 0L ) {
+        if (checkIfAgendaIsClosed(voteDTO.getAgendaID())) {
             throw new AgendaIsClosedException("Pauta encerrada.");
         }
+
         VoteEntity voteEntity = modelMapper.map(voteDTO, VoteEntity.class);
         voteRepository.save(voteEntity);
         return voteEntity;
@@ -45,12 +48,9 @@ public class VoteService {
         return agenda.isPresent();
     }
 
-    public Long checkIfAgendaIsClosed(Long id) {
-        Long status = 0L;
+    public boolean checkIfAgendaIsClosed(Long id) {
+        LocalDateTime now = LocalDateTime.now();
         Optional<AgendaEntity> agenda = agendaRepository.findById(id);
-        if(agenda.isPresent()) {
-            status = agenda.get().getStatus();
-        }
-        return status;
+        return agenda.filter(agendaEntity -> now.isAfter(agendaEntity.getExpirationDate())).isPresent();
     }
 }

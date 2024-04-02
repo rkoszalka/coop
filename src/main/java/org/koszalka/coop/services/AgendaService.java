@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Service
@@ -27,7 +28,7 @@ public class AgendaService {
         try {
             AgendaEntity agendaEntity = modelMapper.map(agendaDTO, AgendaEntity.class);
             if(Objects.isNull(agendaEntity.getExpirationDate())) {
-                agendaEntity.setExpirationDate(60L);
+                agendaEntity.setExpirationDate(LocalDateTime.now().plusMinutes(1));
             }
             agendaRepository.save(agendaEntity);
             return agendaEntity;

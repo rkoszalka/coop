@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @AllArgsConstructor
 public class AgendaDTO {
 
     private String agendaName;
-    private Long expirationDate;
+    private LocalDateTime expirationDate;
 
 }
