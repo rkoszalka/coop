@@ -31,6 +31,10 @@ public class ResultService {
             resultDTO.setResult("Votação reprovada.");
             kafkaProducerCoop.sendMessage("votação reprovada");
             return  resultDTO;
+        } else if (yesVotes == noVotes) {
+            resultDTO.setResult("Votação empatada.");
+            kafkaProducerCoop.sendMessage("votação empatada");
+            return  resultDTO;
         }
 
         resultDTO.setResult("Votação sem votos.");
