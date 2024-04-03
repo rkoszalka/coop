@@ -29,12 +29,8 @@ public class AgendaController {
     @PostMapping("/create-agenda")
     public ResponseEntity<AgendaEntity> createAgenda(@RequestBody AgendaDTO agendaDTO) {
         AgendaEntity agendaEntity = agendaService.createNewAgenda(agendaDTO);
-        return new ResponseEntity<>(agendaEntity, HttpStatus.OK);
+        return new ResponseEntity<>(agendaEntity, HttpStatus.CREATED);
     }
 
-    @GetMapping("/get-date")
-    public LocalDateTime getDate() {
-        return LocalDateTime.now();
-    }
 
 }

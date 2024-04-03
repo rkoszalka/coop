@@ -28,7 +28,7 @@ public class VoteController {
     @PostMapping("/create-vote")
     public ResponseEntity<VoteEntity> createAgenda(@RequestBody VoteDTO voteDTO) {
         VoteEntity voteEntity = voteService.saveNewVote(voteDTO);
-        return new ResponseEntity<>(voteEntity, HttpStatus.OK);
+        return new ResponseEntity<>(voteEntity, HttpStatus.CREATED);
     }
 
 }
