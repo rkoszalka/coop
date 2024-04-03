@@ -12,3 +12,6 @@ It's needed to have kafka installed on the local machine to run the project.
 # Database
 I am using an RDS Postgres on AWS, for the sake of this test it's allowing all inbound trafic
 which I wouldn't  let happen if it was a production environment.
+
+# Third-Party Integration
+The Heroku app is not working anymore, but if it were i would integrate with it using RestTemplate to make REST calls and validate user CPF
