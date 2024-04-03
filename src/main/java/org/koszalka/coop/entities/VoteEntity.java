@@ -28,4 +28,7 @@ public class VoteEntity {
     @Column(name = "vote_status")
     private String voteStatus;
 
+    @Column(name = "agenda_id")
+    private Long agendaID;
+
 }

@@ -55,3 +55,13 @@ databaseChangeLog:
             schemaName: public
             sequenceName: vote_sequence
             startValue: 1
+  - changeSet:
+      id: 0d6e7883-c379-41ce-b16b-b85574974262
+      author: raphael-koszalka
+      changes:
+        - addColumn:
+            tableName: vote
+            columns:
+              - column:
+                  name: agenda_id
+                  type: bigint
