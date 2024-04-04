@@ -59,9 +59,15 @@ public class VoteService {
     }
 
     public boolean checkIfAgendaIsClosed(Long id) {
-        LocalDateTime now = LocalDateTime.now();
-        Optional<AgendaEntity> agenda = agendaRepository.findById(id);
-        return agenda.filter(agendaEntity -> now.isAfter(agendaEntity.getExpirationDate())).isPresent();
+        try {
+            LocalDateTime now = LocalDateTime.now();
+            Optional<AgendaEntity> agenda = agendaRepository.findById(id);
+            return agenda.filter(agendaEntity -> now.isAfter(agendaEntity.getExpirationDate())).isPresent();
+        } catch (Exception ex) {
+            log.error(ex.getMessage());
+        }
+        return false;
+
     }
 
     public boolean checkIfUserAlreadyVoted(Long cpf, Long agendaID) {
