@@ -32,6 +32,7 @@ public class ResultService {
 
         if (checkIfAgendaIsClosed(id)) {
             resultDTO.setResult("Votação encerrada");
+            kafkaProducerCoop.sendMessage("votação encerrada");
             return  resultDTO;
         }
 
