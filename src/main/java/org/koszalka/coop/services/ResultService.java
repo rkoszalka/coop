@@ -30,9 +30,9 @@ public class ResultService {
     public ResultDTO getAgendaResult(Long id) {
         ResultDTO resultDTO = new ResultDTO("Votação em aberto");
 
-        if (checkIfAgendaIsClosed(id)) {
-            resultDTO.setResult("Votação encerrada");
-            kafkaProducerCoop.sendMessage("votação encerrada");
+        if (!checkIfAgendaIsClosed(id)) {
+            resultDTO.setResult("Votação em aberto");
+            kafkaProducerCoop.sendMessage("votação em aberto");
             return  resultDTO;
         }
 
